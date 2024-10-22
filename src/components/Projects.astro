@@ -1,0 +1,120 @@
+---
+import GitHub from "./icons/GitHub.astro"
+import NextJS from "./icons/NextJS.astro"
+import Tailwind from "./icons/Tailwind.astro"
+import Link from "./icons/Link.astro"
+import LinkButton from "./LinkButton.astro"
+import React from './icons/React.astro'
+import JavaScript from './icons/JavaScript.astro'
+import Node from './icons/NodeJs.astro'
+
+const TAGS = {
+  REACT: {
+    name: "React JS",
+    class: "bg-[#58C4DC] text-white",
+    icon: React,
+  },
+  JS: {
+    name: "Java Script",
+    class: "bg-[#F0DB4F] text-black/80",
+    icon: JavaScript,
+  },
+  NODE: {
+    name: "Node JS",
+    class: "bg-[#53A244] text-white",
+    icon: Node,
+  },
+}
+const PROJECTS = [
+  {
+    title: "Copa Relámpago - Sistema de gestion para torneos de futbol",
+    description:
+      "Sistema de gestion para Copa Relámpago, un torneo de fútbol 7 de Córdoba, Argentina. Cuenta con roles de administrador, planillero y usuario, entre otras muchas cosas más!",
+    progres: 80,
+    coop: true,
+    link: "https://coparelampago.com/",
+    github: "https://github.com/perezmariano08/CR_Frontend.git",
+    image: "/projects/coparelampago.png",
+    tags: [TAGS.REACT, TAGS.JS, TAGS.NODE],
+  },
+  {
+    title: "Gentío - Landing page para una agencia de comunicación",
+    description:
+      "Landing page elorada con un analisis previo de competencias y pedido de usuario.",
+    progres: 95,
+    coop: true,
+    link: "https://gentio.vercel.app/",
+    github: "https://github.com/perezmariano08/Gentio-Web.git",
+    image: "/projects/gentio.png",
+    tags: [TAGS.REACT],
+  },
+]
+
+---
+
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github, progres }) => (
+    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+  <div class="w-full md:w-1/2">
+    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+      <img alt="Screenshot del home de copa relampago" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2 md:max-w-lg">
+    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+      {title}
+    </h3>
+    <div class="flex flex-wrap mt-2">
+      <ul class="flex flex-row mb-2 gap-x-2">
+          {tags.map((tag) => (
+            <li>
+              <span
+                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+              >
+                <tag.icon class="size-4" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+
+      <div class="mt-3 flex flex-col items-start gap-x-4 w-1/2">
+      <div>
+
+        <p class="text-xs py-1 text-gray-500">En progreso</p>
+      </div>
+        <div class="w-full bg-gray-200 rounded-full h-6 dark:bg-gray-700 relative">
+          <div class="bg-blue-600 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={`width: ${progres}%`}>
+            {progres}%
+          </div>
+        </div>
+      </div>
+
+      <footer class="flex items-end justify-start mt-4 gap-x-4">
+          {github && (
+            <LinkButton href={github}>
+              <GitHub class="size-6" />
+              Código
+              
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton href={link}>
+              <Link class="size-4" />
+              Vista previa
+            </LinkButton>
+          )}
+        </footer>
+    </div>
+  </div>
+</article>
+    ))
+  }
+</div>
+
+
+
