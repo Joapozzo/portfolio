@@ -7,6 +7,7 @@ import LinkButton from "./LinkButton.astro"
 import React from './icons/React.astro'
 import JavaScript from './icons/JavaScript.astro'
 import Node from './icons/NodeJs.astro'
+import IconAstro from './icons/IconAstro.astro'
 
 const TAGS = {
   REACT: {
@@ -24,13 +25,33 @@ const TAGS = {
     class: "bg-[#53A244] text-white",
     icon: Node,
   },
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#381067] text-white",
+    icon: IconAstro,
+  }, 
+  TS: {
+    name: "TypeScript",
+    class: "bg-[#53A244] text-white",
+    icon: Node,
+  },
+  TW : {
+    name: "Tailwind",
+    class: "bg-[#030712] text-white",
+    icon: Tailwind,
+  },
+  NEXTJS : {
+    name: "NextJS",
+    class: "bg-[#58C4DC] text-white",
+    icon: NextJS,
+  },
 }
 const PROJECTS = [
   {
     title: "Copa Relámpago - Sistema de gestion para torneos de futbol",
     description:
       "Proyecto de tesis - Sistema de gestion para Copa Relámpago, un torneo de fútbol 7 de Córdoba, Argentina. Cuenta con roles de administrador, planillero y usuario, entre otras muchas cosas más!",
-    progres: 80,
+    progres: 95,
     coop: true,
     link: "https://coparelampago.com/",
     github: "https://github.com/perezmariano08/CR_Frontend.git",
@@ -41,12 +62,34 @@ const PROJECTS = [
     title: "Gentío - Landing page para una agencia de comunicación",
     description:
       "Landing page elaborada con un analisis previo de competencias y pedido de usuario.",
-    progres: 95,
+    progres: 100,
     coop: true,
     link: "https://gentio.vercel.app/",
     github: "https://github.com/perezmariano08/Gentio-Web.git",
     image: "/projects/gentio.png",
     tags: [TAGS.REACT, TAGS.JS],
+  },
+  {
+    title: "Grupo BZN - Landing page para una constructora",
+    description:
+      "Desarollada y diseñada con un analisis previo de competencias y pedido de usuario.",
+    progres: 90,
+    coop: true,
+    link: "https://bzn-web.vercel.app/",
+    github: "https://github.com/Joapozzo/bzn-web.git",
+    image: "/projects/bzn.png",
+    tags: [TAGS.ASTRO, TAGS.REACT, TAGS.TW],
+  },
+  {
+    title: "Timba - App para dividir gastos",
+    description:
+      "Desarollada para dividir gastos entre varias personas facilitando la gestión de los gastos.",
+    progres: 99,
+    coop: true,
+    link: "https://timba-git-main-joapozzos-projects.vercel.app/",
+    github: "https://github.com/Joapozzo/timba.git",
+    image: "/projects/timba.png",
+    tags: [TAGS.NEXTJS, TAGS.TW],
   },
 ]
 
