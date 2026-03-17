@@ -1,0 +1,12 @@
+---
+interface Props {
+  role: "fullstack" | "frontend";
+}
+const { role } = Astro.props;
+---
+
+<span
+  class={`absolute top-2 right-2 z-10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide rounded-lg shadow-sm ${role === "fullstack" ? "bg-emerald-600/95 text-white dark:bg-emerald-500/95" : "bg-blue-600/95 text-white dark:bg-blue-500/95"}`}
+>
+  {role === "fullstack" ? "Fullstack" : "Frontend"}
+</span>

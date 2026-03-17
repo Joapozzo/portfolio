@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import { TAGS } from "@/data/utils";
+
+type TagItem = (typeof TAGS)[keyof typeof TAGS];
+
+interface Props {
+  tags: TagItem[];
+}
+const { tags } = Astro.props;
+---
+
+<ul class="flex flex-row flex-wrap gap-x-2 gap-y-1.5 mb-2">
+  {
+    tags &&
+      tags.map((tag) => (
+        <li>
+          <span
+            class={`inline-flex gap-x-1.5 rounded-full text-xs items-center ${tag.class} py-1 px-2`}
+          >
+            <Icon name={tag.icon} class="size-4 shrink-0" />
+            {tag.name}
+          </span>
+        </li>
+      ))
+  }
+</ul>

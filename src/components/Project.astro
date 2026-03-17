@@ -1,0 +1,59 @@
+---
+import { TAGS, CATEGORIES } from "@/data/utils";
+import Link from "./icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
+import ProjectRoleBadge from "./project/ProjectRoleBadge.astro";
+import ProjectTags from "./project/ProjectTags.astro";
+import ProjectProgress from "./project/ProjectProgress.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  tags: (typeof TAGS)[keyof typeof TAGS][];
+  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
+  role?: "fullstack" | "frontend";
+  image: string;
+  link?: string;
+  progres: number;
+}
+
+const { title, description, tags, category, role, image, link, progres } = Astro.props;
+---
+
+<article class="projects-card flex flex-col group" data-category={category}>
+  <div
+    class="relative w-full aspect-[4/3] min-h-[12rem] overflow-hidden rounded-xl sm:rounded-xl shadow-xl md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50 transition duration-500 ease-in-out md:group-hover:-translate-y-1"
+  >
+    {role && <ProjectRoleBadge role={role} />}
+    <img
+      alt={`Screenshot de ${title}`}
+      class="object-cover object-center w-full h-full transition duration-500 md:group-hover:scale-105"
+      loading="lazy"
+      src={image}
+    />
+  </div>
+
+  <div class="w-full mt-4">
+    <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">
+      {title}
+    </h3>
+    <div class="flex flex-wrap mt-2">
+      <ProjectTags tags={tags} />
+
+      <div class="mt-2 text-gray-700 dark:text-gray-400 text-sm">
+        {description}
+      </div>
+
+      <ProjectProgress value={progres} />
+
+      <footer class="flex items-end justify-start mt-4 gap-x-4 flex-wrap gap-y-2">
+        {link && (
+          <LinkButton href={link}>
+            <Link class="size-4" />
+            Vista previa
+          </LinkButton>
+        )}
+      </footer>
+    </div>
+  </div>
+</article>

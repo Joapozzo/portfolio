@@ -1,226 +1,76 @@
 ---
-import GitHub from "./icons/GitHub.astro";
-import NextJS from "./icons/NextJS.astro";
-import Tailwind from "./icons/Tailwind.astro";
-import Link from "./icons/Link.astro";
-import LinkButton from "./LinkButton.astro";
-import React from "./icons/React.astro";
-import JavaScript from "./icons/JavaScript.astro";
-import Node from "./icons/NodeJs.astro";
-import IconAstro from "./icons/IconAstro.astro";
-
-const TAGS = {
-  REACT: {
-    name: "React JS",
-    class: "bg-[#58C4DC] text-white",
-    icon: React,
-  },
-  JS: {
-    name: "Java Script",
-    class: "bg-[#F0DB4F] text-black/80",
-    icon: JavaScript,
-  },
-  NODE: {
-    name: "Node JS",
-    class: "bg-[#53A244] text-white",
-    icon: Node,
-  },
-  ASTRO: {
-    name: "Astro",
-    class: "bg-[#381067] text-white",
-    icon: IconAstro,
-  },
-  TS: {
-    name: "TypeScript",
-    class: "bg-[#53A244] text-white",
-    icon: Node,
-  },
-  TW: {
-    name: "Tailwind",
-    class: "bg-[#030712] text-white",
-    icon: Tailwind,
-  },
-  NEXTJS: {
-    name: "NextJS",
-    class: "bg-[#58C4DC] text-white",
-    icon: NextJS,
-  },
-};
-
-const PROJECTS = [
-  {
-    title: "Copa Relámpago - Gestión de torneos",
-    description:
-      "Sistema de gestión web para torneo de fútbol 7. Roles múltiples, fixture, resultados y más.",
-    progres: 95,
-    coop: true,
-    link: "https://coparelampago.com/",
-    github: "https://github.com/perezmariano08/CR_Frontend.git",
-    image: "/projects/coparelampago.png",
-    tags: [TAGS.REACT, TAGS.JS, TAGS.NODE],
-  },
-  {
-    title: "Loopin - App de fidelización",
-    description:
-      "Frontend desarrollado para una app de puntos y beneficios en restaurantes.",
-    progres: 95,
-    coop: true,
-    link: "https://loopin.com.ar/",
-    github: "https://github.com/Joapozzo/loopin-front.git",
-    image: "/projects/loopin.png",
-    tags: [TAGS.NEXTJS, TAGS.TS, TAGS.TW],
-  },
-  {
-    title: "Gentío - Agencia de comunicación",
-    description:
-      "Landing page desarrollada a medida según identidad visual y análisis de competencia.",
-    progres: 100,
-    coop: true,
-    link: "https://gentiomkt.com/es",
-    github: "https://github.com/perezmariano08/Gentio-Web.git",
-    image: "/projects/gentio.png",
-    tags: [TAGS.REACT, TAGS.JS],
-  },
-  {
-    title: "Grupo BZN - Desarrolladora inmobiliaria",
-    description:
-      "Landing institucional con foco en branding e impacto visual. Diseño responsive.",
-    progres: 100,
-    coop: true,
-    link: "https://bznurbanmaking.com.ar/",
-    github: "https://github.com/Joapozzo/bzn-web.git",
-    image: "/projects/bzn.png",
-    tags: [TAGS.ASTRO, TAGS.REACT, TAGS.TW],
-  },
-  {
-    title: "Duccó - Sitio para mueblería",
-    description:
-      "Sitio web moderno y elegante para mostrar productos y servicios personalizados.",
-    progres: 100,
-    coop: true,
-    link: "https://www.amoblamientosducco.com.ar/",
-    github: "https://github.com/Joapozzo/ducco.git",
-    image: "/projects/ducco.png",
-    tags: [TAGS.NEXTJS, TAGS.TS, TAGS.TW],
-  },
-  {
-    title: "Rayces - Tienda de muebles",
-    description:
-      "Diseño moderno y visualmente atractivo para tienda de muebles a medida.",
-    progres: 90,
-    coop: true,
-    link: "https://rayces.vercel.app/",
-    github: "https://github.com/Joapozzo/rayces.git",
-    image: "/projects/rayces.png",
-    tags: [TAGS.NEXTJS, TAGS.TS, TAGS.TW],
-  },
-  {
-    title: "Grupo Rennella - Publicidad OOH",
-    description:
-      "Landing profesional para empresa con más de 60 años en medios publicitarios.",
-    progres: 100,
-    coop: true,
-    link: "https://rennella.vercel.app/",
-    github: "https://github.com/Joapozzo/grupo-rennella",
-    image: "/projects/rennella.png",
-    tags: [TAGS.NEXTJS, TAGS.TS, TAGS.TW],
-  },
-  {
-    title: "GND - Grupo Natural Design",
-    description:
-      "Web corporativo para empresa de diseño de indumentaria para empresas.",
-    progres: 99,
-    coop: true,
-    link: "https://gruponaturaldesign.vercel.app/",
-    github: "https://github.com/Joapozzo/gruponaturaldesign",
-    image: "/projects/gnd.png",
-    tags: [TAGS.NEXTJS, TAGS.TW],
-  },
-  {
-    title: "Timba - División de gastos",
-    description:
-      "App para dividir gastos en grupo, simple e intuitiva. En desarrollo.",
-    progres: 80,
-    coop: true,
-    link: "https://timba-git-main-joapozzos-projects.vercel.app/",
-    github: "https://github.com/Joapozzo/timba.git",
-    image: "/projects/timba.png",
-    tags: [TAGS.NEXTJS, TAGS.TW],
-  },
-];
+import Project from "./Project.astro";
+import ProjectFilters from "./project/ProjectFilters.astro";
+import { PROJECTS } from "@/data/projects";
 ---
 
-<div class="flex flex-col gap-y-16">
-  {
-    PROJECTS.map(
-      ({ image, title, description, tags, link, github, progres }) => (
-        <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-          <div class="w-full md:w-1/2">
-            <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-              <img
-                alt="Screenshot del home de copa relampago"
-                class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-                loading="lazy"
-                src={image}
-              />
-            </div>
-          </div>
+<div class="flex flex-col gap-y-10">
+  <ProjectFilters />
 
-          <div class="w-full md:w-1/2 md:max-w-lg">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-              {title}
-            </h3>
-            <div class="flex flex-wrap mt-2">
-              <ul class="flex flex-row mb-2 gap-x-2">
-                {tags &&
-                  tags.map((tag) => (
-                    <li>
-                      <span
-                        class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                      >
-                        <tag.icon class="size-4" />
-                        {tag.name}
-                      </span>
-                    </li>
-                  ))}
-              </ul>
-
-              <div class="mt-2 text-gray-700 dark:text-gray-400">
-                {description}
-              </div>
-
-              <div class="mt-3 flex flex-col items-start gap-x-4 w-1/2">
-                <div>
-                  <p class="text-xs py-1 text-gray-500">En progreso</p>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-6 dark:bg-gray-700 relative">
-                  <div
-                    class="bg-blue-600 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                    style={`width: ${progres}%`}
-                  >
-                    {progres}%
-                  </div>
-                </div>
-              </div>
-
-              <footer class="flex items-end justify-start mt-4 gap-x-4">
-                {github && (
-                  <LinkButton href={github}>
-                    <GitHub class="size-6" />
-                    Código
-                  </LinkButton>
-                )}
-                {link && (
-                  <LinkButton href={link}>
-                    <Link class="size-4" />
-                    Vista previa
-                  </LinkButton>
-                )}
-              </footer>
-            </div>
-          </div>
-        </article>
-      )
-    )
-  }
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-8 md:gap-y-12" id="projects-grid">
+    {
+      PROJECTS.map((project) => (
+        <Project
+          title={project.title}
+          description={project.description}
+          tags={project.tags}
+          category={project.category}
+          role={project.role as "fullstack" | "frontend" | undefined}
+          image={project.image}
+          link={project.link}
+          progres={project.progres}
+        />
+      ))
+    }
+  </div>
 </div>
+
+<style>
+  .projects-filter {
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+  }
+</style>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLElement>(".projects-filter");
+  const projectCards = document.querySelectorAll<HTMLElement>(".projects-card");
+
+  function setActiveButton(active: HTMLElement) {
+    filterButtons.forEach((btn) => {
+      btn.classList.remove("is-active");
+      const root = btn.querySelector(".badge-root");
+      if (root) root.classList.add("badge--inactive");
+    });
+    active.classList.add("is-active");
+    const activeRoot = active.querySelector(".badge-root");
+    if (activeRoot) activeRoot.classList.remove("badge--inactive");
+  }
+
+  function filterProjects(category: string) {
+    projectCards.forEach((card) => {
+      const cardCategory = card.getAttribute("data-category");
+      const show = category === "todos" || cardCategory === category;
+      card.style.display = show ? "" : "none";
+    });
+  }
+
+  const todosButton = document.querySelector<HTMLElement>('.projects-filter[data-category="todos"]');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const category = btn.getAttribute("data-category") ?? "todos";
+      const isAlreadyActive = btn.classList.contains("is-active");
+
+      if (isAlreadyActive && todosButton) {
+        setActiveButton(todosButton);
+        filterProjects("todos");
+      } else {
+        setActiveButton(btn);
+        filterProjects(category);
+      }
+    });
+  });
+</script>

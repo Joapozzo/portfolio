@@ -1,0 +1,22 @@
+---
+import Badge from "../Badge.astro";
+import { CATEGORIES } from "@/data/utils";
+---
+
+<div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrar proyectos por categoría">
+  <button type="button" class="projects-filter is-active" data-category={CATEGORIES.ALL}>
+    <Badge active={true}>Todos</Badge>
+  </button>
+  <button type="button" class="projects-filter" data-category={CATEGORIES.LANDING}>
+    <Badge active={false}>Landing</Badge>
+  </button>
+  <button type="button" class="projects-filter" data-category={CATEGORIES.APPS}>
+    <Badge active={false}>Apps</Badge>
+  </button>
+  <button type="button" class="projects-filter" data-category={CATEGORIES.CORPORATIVOS}>
+    <Badge active={false}>Sitios corporativos</Badge>
+  </button>
+  <button type="button" class="projects-filter" data-category={CATEGORIES.ECOMMERCE}>
+    <Badge active={false}>Ecommerce</Badge>
+  </button>
+</div>
