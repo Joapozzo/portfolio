@@ -23,7 +23,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm dev',
+    // public/projects is gitignored; sync from src/assets before serving.
+    command: 'pnpm shots:sync && pnpm dev',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
