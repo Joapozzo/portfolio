@@ -1,0 +1,39 @@
+{
+  "order": 3,
+  "slug": "gnd",
+  "title": { "es": "GND (Natural Design)", "en": "GND (Natural Design)" },
+  "summary": {
+    "es": "E-commerce y sistema de gestión para Natural Design (naturalonline.com.ar).",
+    "en": "E-commerce and management system for Natural Design (naturalonline.com.ar)."
+  },
+  "role": {
+    "es": "API REST: diseño y desarrollo",
+    "en": "REST API: design and development"
+  },
+  "stack": ["Docker", "GitHub Actions"],
+  "metrics": [
+    {
+      "label": { "es": "Tests", "en": "Tests" },
+      "value": "83",
+      "verified": true
+    }
+  ],
+  "links": [{ "type": "live", "url": "https://naturalonline.com.ar" }],
+  "embedPolicy": "live",
+  "embedUrl": "https://naturalonline.com.ar",
+  "status": "active",
+  "featured": true,
+  "clientPermission": false,
+  "tint": "#FF9F0A",
+  "screenshotIds": {
+    "mac": ["gnd-mac-fold", "gnd-mac-scroll"],
+    "ipad": ["gnd-ipad-fold"],
+    "iphone": ["gnd-iphone-fold"]
+  },
+  "serverFlow": [
+    { "es": "Request storefront", "en": "Request storefront" },
+    { "es": "Auth / session", "en": "Auth / session" },
+    { "es": "Catalog query", "en": "Catalog query" },
+    { "es": "Cache + render", "en": "Cache + render" }
+  ]
+}

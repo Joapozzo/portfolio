@@ -1,0 +1,44 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n';
+import ContactForm from '@/components/ContactForm';
+import { site } from '@/content/site';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout title={`${t('contact.title')} | Joaquín Pozzo`} description={t('contact.description')}>
+  <section class="page-shell py-6" data-align="shell">
+    <h1 class="large-title mb-4" data-align="title">{t('contact.title')}</h1>
+    <p class="mb-10 max-w-xl text-lg text-[var(--fg-secondary)]">{t('contact.description')}</p>
+    <ContactForm
+      client:load
+      lang={lang}
+      labels={{
+        name: t('contact.name'),
+        email: t('contact.email'),
+        message: t('contact.message'),
+        send: t('contact.send'),
+        sending: t('contact.sending'),
+        success: t('contact.success'),
+        error: t('contact.error'),
+        mailtoFallback: t('contact.mailtoFallback'),
+      }}
+    />
+    <div class="mt-8 grid gap-4">
+      <a href={`mailto:${site.email}`} class="surface focus-ring block card-pad transition hover:-translate-y-0.5">
+        <p class="caption mb-1">Email</p>
+        <p class="title-2 text-[var(--accent)]">{site.email}</p>
+      </a>
+      <a href={site.linkedin.url} target="_blank" rel="noopener noreferrer" class="surface focus-ring block card-pad transition hover:-translate-y-0.5">
+        <p class="caption mb-1">LinkedIn</p>
+        <p class="title-2">{site.linkedin.label}</p>
+      </a>
+      <a href={site.github.url} target="_blank" rel="noopener noreferrer" class="surface focus-ring block card-pad transition hover:-translate-y-0.5">
+        <p class="caption mb-1">GitHub</p>
+        <p class="title-2">{site.github.label}</p>
+      </a>
+    </div>
+  </section>
+</Layout>

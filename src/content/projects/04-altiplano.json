@@ -1,0 +1,33 @@
+{
+  "order": 4,
+  "slug": "altiplano",
+  "title": { "es": "Altiplano Experience", "en": "Altiplano Experience" },
+  "summary": {
+    "es": "Plataforma de reservas y experiencias turísticas en el noroeste argentino.",
+    "en": "Booking and tourism experiences in northwestern Argentina."
+  },
+  "role": {
+    "es": "Front y back: diseño y desarrollo",
+    "en": "Front end and back end: design and development"
+  },
+  "stack": [],
+  "metrics": [],
+  "links": [{ "type": "live", "url": "https://altiplanoexperience.com" }],
+  "embedPolicy": "live",
+  "embedUrl": "https://altiplanoexperience.com",
+  "status": "active",
+  "featured": true,
+  "clientPermission": false,
+  "tint": "#64D2FF",
+  "screenshotIds": {
+    "mac": ["altiplano-mac-fold", "altiplano-mac-scroll"],
+    "ipad": ["altiplano-ipad-fold"],
+    "iphone": ["altiplano-iphone-fold"]
+  },
+  "serverFlow": [
+    { "es": "Booking request", "en": "Booking request" },
+    { "es": "Validate input", "en": "Validate input" },
+    { "es": "Availability check", "en": "Availability check" },
+    { "es": "Confirm + notify", "en": "Confirm + notify" }
+  ]
+}

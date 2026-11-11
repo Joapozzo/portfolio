@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n';
+import BentoGrid from '@/components/BentoGrid.astro';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<Layout title={`${t('about.title')} | Joaquín Pozzo`} description={t('about.description')}>
+  <section class="page-shell pb-10 pt-6">
+    <h1 class="large-title mb-6">{t('about.title')}</h1>
+    <div class="surface card-pad space-y-[var(--space-5)]" data-align="card">
+      <p class="text-lg leading-relaxed text-[var(--fg-secondary)]">
+        Soy desarrollador Backend & Full Stack de Córdoba, Argentina. Trabajo como desarrollador web en Gentío MKT desde 2023, con foco en Node.js, TypeScript y PostgreSQL.
+      </p>
+      <p class="text-lg leading-relaxed text-[var(--fg-secondary)]">
+        También construyo interfaces con React y Next.js. Me importa el código testeable, la claridad de arquitectura y productos que se sientan nativos.
+      </p>
+    </div>
+  </section>
+  <BentoGrid lang={lang} />
+</Layout>

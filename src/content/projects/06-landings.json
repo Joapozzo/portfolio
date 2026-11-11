@@ -1,0 +1,57 @@
+{
+  "order": 6,
+  "slug": "landings",
+  "title": { "es": "Landings", "en": "Landings" },
+  "summary": {
+    "es": "Colección de landing pages y sitios corporativos para diversos clientes.",
+    "en": "Landing pages and corporate sites for multiple clients."
+  },
+  "role": {
+    "es": "Frontend Developer",
+    "en": "Frontend Developer"
+  },
+  "stack": ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+  "metrics": [],
+  "links": [
+    {
+      "type": "live",
+      "url": "https://sommierworld.com",
+      "label": { "es": "Sommierworld", "en": "Sommierworld" }
+    },
+    {
+      "type": "live",
+      "url": "https://zcseguridad.com",
+      "label": { "es": "ZC Seguridad", "en": "ZC Seguridad" }
+    },
+    {
+      "type": "live",
+      "url": "https://quantivagroup.com.ar",
+      "label": { "es": "Quantiva Group", "en": "Quantiva Group" }
+    }
+  ],
+  "embedPolicy": "live",
+  "embedUrl": "https://sommierworld.com",
+  "status": "active",
+  "featured": true,
+  "clientPermission": false,
+  "tint": "#FF375F",
+  "screenshotIds": {
+    "mac": [
+      "sommierworld-mac-fold",
+      "zcseguridad-mac-fold",
+      "quantivagroup-mac-fold",
+      "megustaloquehago-mac-fold"
+    ],
+    "ipad": ["sommierworld-ipad-fold", "gruporennella-ipad-fold"],
+    "iphone": [
+      "sommierworld-iphone-fold",
+      "ortodoncia-florenciadiz-iphone-fold"
+    ]
+  },
+  "serverFlow": [
+    { "es": "Static request", "en": "Static request" },
+    { "es": "Edge / CDN", "en": "Edge / CDN" },
+    { "es": "HTML + assets", "en": "HTML + assets" },
+    { "es": "Analytics (optional)", "en": "Analytics (optional)" }
+  ]
+}

@@ -1,0 +1,43 @@
+---
+// Inline script to prevent theme flash on load
+---
+
+<script is:inline>
+  (function () {
+    const THEME_KEY = 'portfolio-theme';
+    const MOTION_KEY = 'portfolio-reduced-motion';
+
+    let theme;
+    try {
+      theme = localStorage.getItem(THEME_KEY);
+    } catch {
+      theme = null;
+    }
+
+    if (!theme) {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    }
+
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+
+    let reducedMotion;
+    try {
+      const stored = localStorage.getItem(MOTION_KEY);
+      reducedMotion = stored === null ? null : stored === 'true';
+    } catch {
+      reducedMotion = null;
+    }
+
+    if (reducedMotion === null) {
+      reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    if (reducedMotion) {
+      document.documentElement.classList.add('reduce-motion');
+    }
+  })();
+</script>

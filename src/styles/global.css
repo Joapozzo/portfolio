@@ -1,0 +1,367 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@theme {
+  --color-system-bg: #f5f5f7;
+  --color-system-bg-elevated: #ffffff;
+  --color-system-bg-secondary: #e5e5ea;
+  --color-system-label: #1d1d1f;
+  --color-system-secondary-label: #3a3a3c;
+  --color-system-tertiary-label: #6e6e73;
+  --color-system-separator: rgba(60, 60, 67, 0.18);
+  --color-system-fill: rgba(120, 120, 128, 0.12);
+  /* #0066CC keeps AA contrast with white button labels while staying iOS-blue */
+  --color-accent: #0066cc;
+  --color-accent-soft: rgba(0, 102, 204, 0.14);
+
+  --color-dark-bg: #000000;
+  --color-dark-bg-elevated: #1c1c1e;
+  --color-dark-bg-secondary: #2c2c2e;
+  --color-dark-label: #f5f5f7;
+  --color-dark-secondary-label: #98989d;
+  --color-dark-tertiary-label: #636366;
+  --color-dark-separator: rgba(84, 84, 88, 0.45);
+  --color-dark-fill: rgba(120, 120, 128, 0.24);
+  --color-dark-accent: #0a84ff;
+  --color-dark-accent-soft: rgba(10, 132, 255, 0.22);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-ios: 28px;
+  --radius-ios-sm: 16px;
+  --radius-ios-xs: 12px;
+
+  --shadow-elevated: 0 8px 30px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 20px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-dock: 0 12px 40px rgba(0, 0, 0, 0.16), inset 0 0.5px 0 rgba(255, 255, 255, 0.35);
+}
+
+:root {
+  --header-offset: 6.25rem;
+
+  /* Unified layout system — one imaginary vertical line per edge */
+  /* Breakpoints: mobile 390 · tablet 834 · desktop 1440 */
+  --gutter: 16px;
+  --content-max: 1120px;
+  --card-pad: 20px;
+  --chrome-pad-y: 8px;
+
+  /* 4/8px spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 64px;
+
+  --bg: var(--color-system-bg);
+  --bg-elevated: var(--color-system-bg-elevated);
+  --bg-secondary: var(--color-system-bg-secondary);
+  --fg: var(--color-system-label);
+  --fg-secondary: var(--color-system-secondary-label);
+  --fg-tertiary: var(--color-system-tertiary-label);
+  --separator: var(--color-system-separator);
+  --fill: var(--color-system-fill);
+  --accent: var(--color-accent);
+  --accent-soft: var(--color-accent-soft);
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --shadow: var(--shadow-elevated);
+  --shadow-strong: var(--shadow-float);
+}
+
+/* Tablet ~834 */
+@media (min-width: 834px) {
+  :root {
+    --gutter: 32px;
+    --card-pad: 24px;
+    --chrome-pad-y: 12px;
+  }
+}
+
+/* Desktop ~1440 */
+@media (min-width: 1440px) {
+  :root {
+    --gutter: 48px;
+    --card-pad: 32px;
+    --chrome-pad-y: 16px;
+  }
+}
+
+.dark {
+  --bg: var(--color-dark-bg);
+  --bg-elevated: var(--color-dark-bg-elevated);
+  --bg-secondary: var(--color-dark-bg-secondary);
+  --fg: var(--color-dark-label);
+  --fg-secondary: var(--color-dark-secondary-label);
+  --fg-tertiary: var(--color-dark-tertiary-label);
+  --separator: var(--color-dark-separator);
+  --fill: var(--color-dark-fill);
+  --accent: var(--color-dark-accent);
+  --accent-soft: var(--color-dark-accent-soft);
+  --glass: rgba(28, 28, 30, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-strong: 0 24px 70px rgba(0, 0, 0, 0.65);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html.reduce-motion {
+  scroll-behavior: auto;
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+code,
+pre,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid var(--glass-border);
+}
+
+.surface {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-ios);
+  box-shadow: var(--shadow);
+}
+
+.large-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+}
+
+.title-1 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.title-2 {
+  font-size: 1.375rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.caption {
+  font-size: 0.8125rem;
+  color: var(--fg-secondary);
+  letter-spacing: -0.01em;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  color: var(--fg);
+  box-shadow: var(--shadow);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Hide Astro default outline artifacts */
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--fg);
+}
+
+/* Safe area for mobile tab bar */
+.pb-safe {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.mb-safe {
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pt-header {
+  padding-top: var(--header-offset);
+}
+
+html {
+  scroll-padding-top: calc(var(--header-offset) + 1.25rem);
+}
+
+#projects,
+.section-anchor,
+[data-section] {
+  scroll-margin-top: calc(var(--header-offset) + 1.5rem);
+}
+
+/* ——— Shared alignment shell ——— */
+.page-shell {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.page-shell-full {
+  /* Same horizontal edges as .page-shell, no side padding (for nested use) */
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.card-pad {
+  padding: var(--card-pad);
+}
+
+.stack-y-4 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.stack-y-5 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.stack-y-6 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.stack-y-8 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Device outer bezel = alignment edge (ignore shadow/glow for geometry) */
+.device-outer {
+  position: relative;
+  isolation: isolate;
+}
+
+.device-outer::after {
+  /* soft glow sits behind and does not shift the border box */
+  content: none;
+}
+
+/* Debug alignment grid (?grid=1) */
+.layout-grid-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.layout-grid-overlay__shell {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.layout-grid-overlay__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 59, 48, 0.55);
+  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.4);
+}
+
+.layout-grid-overlay__line--left {
+  left: var(--gutter);
+}
+
+.layout-grid-overlay__line--right {
+  right: var(--gutter);
+}
+
+.layout-grid-overlay__label {
+  position: absolute;
+  top: calc(var(--header-offset) + var(--space-2));
+  left: calc(var(--gutter) + var(--space-2));
+  padding: var(--space-1) var(--space-2);
+  border-radius: 6px;
+  background: rgba(255, 59, 48, 0.9);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,85 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n';
+import { getCollection } from 'astro:content';
+import TodayFeed from '@/components/TodayFeed';
+import BentoGrid from '@/components/BentoGrid.astro';
+import { resolveShots } from '@/lib/screenshots';
+import { filterPublicStack } from '@/lib/public-content';
+
+const lang = 'es';
+const t = useTranslations(lang);
+
+const projects = (await getCollection('projects'))
+  .map((p) => p.data)
+  .sort((a, b) => a.order - b.order);
+
+const feedProjects = projects.map((p) => {
+  const shots = resolveShots(p.slug, p.screenshotIds);
+  return {
+    order: p.order,
+    slug: p.slug,
+    title: p.title,
+    summary: p.summary,
+    role: p.role,
+    stack: filterPublicStack(p.stack),
+    tint: p.tint,
+    macShot: shots.mac[0],
+    iphoneShot: shots.iphone[0],
+    ipadShot: shots.ipad[0],
+  };
+});
+---
+
+<Layout>
+  <section class="page-shell pb-[var(--space-8)] pt-[var(--space-5)] md:pt-[var(--space-6)]" data-align="shell">
+    <p class="caption mb-[var(--space-4)] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]" data-align="title">
+      {t('home.greeting')}
+    </p>
+    <h1 class="large-title mb-[var(--space-5)]" data-align="title" data-testid="home-title">Joaquín Pozzo</h1>
+    <p class="max-w-2xl text-xl font-semibold tracking-tight text-[var(--fg)] md:text-2xl">
+      {t('home.role')}
+    </p>
+    <p class="mt-[var(--space-4)] max-w-2xl text-base leading-relaxed text-[var(--fg-secondary)] md:text-lg">
+      {t('home.tagline')}
+    </p>
+    <p class="mt-[var(--space-5)] text-sm font-medium text-[var(--fg-secondary)]">{t('home.yearsNote')}</p>
+
+    <div class="mt-[var(--space-6)] flex flex-col items-start gap-[var(--space-3)] sm:flex-row sm:flex-wrap sm:items-center">
+      <div class="flex flex-wrap items-center gap-[var(--space-3)]">
+        <a
+          href="#projects"
+          class="focus-ring inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-[var(--shadow)]"
+        >
+          {t('home.cta.projects')}
+        </a>
+        <a
+          href="/cv-es.pdf"
+          class="focus-ring inline-flex items-center gap-2 rounded-full bg-[var(--fill)] px-5 py-3 text-sm font-semibold text-[var(--fg)]"
+          download
+        >
+          {t('home.cta.cv')}
+        </a>
+      </div>
+      <span
+        class="inline-flex max-w-full items-center gap-2 rounded-full bg-[#e8f8ee] px-4 py-2 text-sm font-semibold leading-snug text-[#086022]"
+        data-testid="availability-chip"
+        data-align="title"
+      >
+        <span class="h-2 w-2 shrink-0 rounded-full bg-[#086022]" aria-hidden="true"></span>
+        <span class="text-pretty">{t('home.available')}</span>
+      </span>
+    </div>
+  </section>
+
+  <div class="mb-[var(--space-8)]">
+    <TodayFeed
+      client:load
+      projects={feedProjects}
+      lang={lang}
+      labels={{ open: t('home.openProject'), featured: t('home.featured') }}
+    />
+  </div>
+
+  <BentoGrid lang={lang} />
+</Layout>

@@ -1,0 +1,65 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n';
+import { getCollection } from 'astro:content';
+import ProjectSheet from '@/components/ProjectSheet';
+import { resolveShots } from '@/lib/screenshots';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project: project.data },
+  }));
+}
+
+const { project } = Astro.props;
+const shots = resolveShots(project.slug, project.screenshotIds);
+
+const labels = {
+  close: t('cinema.close'),
+  mac: t('cinema.desktop'),
+  ipad: t('cinema.tablet'),
+  iphone: t('cinema.mobile'),
+  tryLive: t('cinema.liveDemo'),
+  server: t('cinema.console'),
+  gallery: t('cinema.gallery'),
+  loading: t('cinema.loading'),
+  illustrative: t('cinema.illustrative'),
+  openExternal: t('cinema.openExternal'),
+  play: t('projects.play'),
+  pause: t('projects.pause'),
+  replay: t('projects.replay'),
+};
+
+const serverFlow =
+  project.serverFlow ??
+  ([
+    { es: 'Request', en: 'Request' },
+    { es: 'Validate', en: 'Validate' },
+    { es: 'Persist', en: 'Persist' },
+    { es: 'Respond', en: 'Respond' },
+  ] as const);
+---
+
+<Layout
+  title={`${project.title[lang]} · Cinema | Joaquín Pozzo`}
+  description={project.summary[lang]}
+  hideChrome
+>
+  <ProjectSheet
+    client:load
+    lang={lang}
+    title={project.title[lang]}
+    tint={project.tint}
+    embedPolicy={project.embedPolicy}
+    embedUrl={project.embedUrl}
+    screenshots={shots}
+    serverFlow={[...serverFlow]}
+    labels={labels}
+    backHref={`/${lang}/proyectos/${project.slug}`}
+  />
+</Layout>

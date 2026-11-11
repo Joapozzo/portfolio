@@ -1,0 +1,32 @@
+{
+  "order": 2,
+  "slug": "loopin",
+  "title": { "es": "Loopin", "en": "Loopin" },
+  "summary": {
+    "es": "Plataforma de fidelización de clientes para comercios.",
+    "en": "Customer loyalty platform for businesses."
+  },
+  "role": {
+    "es": "Frontend Developer, participando en decisiones de producto",
+    "en": "Frontend Developer, participating in product decisions"
+  },
+  "stack": [],
+  "metrics": [],
+  "links": [{ "type": "live", "url": "https://loopin.com.ar" }],
+  "embedPolicy": "video",
+  "status": "active",
+  "featured": true,
+  "clientPermission": false,
+  "tint": "#BF5AF2",
+  "screenshotIds": {
+    "mac": ["loopin-mac-fold", "loopin-mac-scroll"],
+    "ipad": ["loopin-ipad-fold"],
+    "iphone": ["loopin-iphone-fold"]
+  },
+  "serverFlow": [
+    { "es": "UI event -> API request", "en": "UI event -> API request" },
+    { "es": "Auth session", "en": "Auth session" },
+    { "es": "Domain service", "en": "Domain service" },
+    { "es": "Persist + respond", "en": "Persist + respond" }
+  ]
+}

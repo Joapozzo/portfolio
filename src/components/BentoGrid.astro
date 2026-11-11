@@ -1,0 +1,92 @@
+---
+import type { Lang } from '@/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy =
+  lang === 'es'
+    ? {
+        stack: 'Stack',
+        experience: 'Experiencia',
+        education: 'Educación',
+        contact: 'Contacto',
+        gentio: 'Gentío MKT',
+        gentioRole: 'Diseñador y desarrollador web',
+        gentioSince: 'Desde marzo 2023',
+        loopin: 'Loopin',
+        loopinRole: 'Desarrollador frontend',
+        degree: 'Analista en Sistemas',
+        school: 'IES · 2026',
+        email: 'Escribime',
+        stackItems: ['Node.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'React', 'Next.js', 'Socket.IO', 'Redis'],
+      }
+    : {
+        stack: 'Stack',
+        experience: 'Experience',
+        education: 'Education',
+        contact: 'Contact',
+        gentio: 'Gentío MKT',
+        gentioRole: 'Web designer & developer',
+        gentioSince: 'Since March 2023',
+        loopin: 'Loopin',
+        loopinRole: 'Frontend developer',
+        degree: 'Systems Analyst',
+        school: 'IES · 2026',
+        email: 'Email me',
+        stackItems: ['Node.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'React', 'Next.js', 'Socket.IO', 'Redis'],
+      };
+---
+
+<section
+  class="page-shell pb-28 md:pb-36"
+  aria-label={lang === 'es' ? 'Más sobre mí' : 'More about me'}
+  data-align="shell"
+>
+  <div class="grid gap-[var(--space-4)] md:grid-cols-4 md:grid-rows-2">
+    <article class="surface card-pad md:col-span-2 md:row-span-2" data-align="card">
+      <p class="caption mb-[var(--space-3)] uppercase tracking-[0.16em]">{copy.stack}</p>
+      <h2 class="title-2 mb-[var(--space-5)]">{lang === 'es' ? 'Herramientas que uso a diario' : 'Tools I use every day'}</h2>
+      <div class="flex flex-wrap gap-[var(--space-2)]">
+        {copy.stackItems.map((item) => (
+          <span class="rounded-full bg-[var(--fill)] px-3 py-1.5 text-sm font-medium text-[var(--fg-secondary)]">
+            {item}
+          </span>
+        ))}
+      </div>
+    </article>
+
+    <article class="surface card-pad md:col-span-2" data-align="card">
+      <p class="caption mb-[var(--space-3)] uppercase tracking-[0.16em]">{copy.experience}</p>
+      <ul class="space-y-[var(--space-4)]">
+        <li>
+          <h3 class="font-semibold tracking-tight">{copy.gentio}</h3>
+          <p class="text-sm text-[var(--fg-secondary)]">{copy.gentioRole}</p>
+          <p class="caption mt-[var(--space-1)]">{copy.gentioSince}</p>
+        </li>
+        <li>
+          <h3 class="font-semibold tracking-tight">{copy.loopin}</h3>
+          <p class="text-sm text-[var(--fg-secondary)]">{copy.loopinRole}</p>
+        </li>
+      </ul>
+    </article>
+
+    <article class="surface card-pad" data-align="card">
+      <p class="caption mb-[var(--space-3)] uppercase tracking-[0.16em]">{copy.education}</p>
+      <h3 class="font-semibold tracking-tight">{copy.degree}</h3>
+      <p class="caption mt-[var(--space-1)]">{copy.school}</p>
+    </article>
+
+    <article class="surface relative overflow-hidden card-pad" data-align="card">
+      <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--accent-soft)] blur-2xl" aria-hidden="true" />
+      <p class="caption mb-[var(--space-3)] uppercase tracking-[0.16em]">{copy.contact}</p>
+      <a href={`/${lang}/contacto`} class="focus-ring mt-[var(--space-2)] inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-4 py-2.5 text-sm font-bold text-white">
+        {copy.email}
+        <span aria-hidden="true">→</span>
+      </a>
+    </article>
+  </div>
+</section>

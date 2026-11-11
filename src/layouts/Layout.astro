@@ -1,114 +1,130 @@
 ---
-import "@fontsource-variable/onest"
-
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
-import { ViewTransitions } from "astro:transitions"
+import '../styles/global.css';
+import { getLangFromUrl, useTranslations, getLocalizedPath, getHrefLang } from '@/i18n';
+import { getPersonJsonLd, getWebsiteJsonLd } from '@/lib/seo';
+import TopChrome from '@/components/TopChrome.astro';
+import Dock from '@/components/Dock';
+import BottomTabBar from '@/components/BottomTabBar';
+import ThemeScript from '@/components/ThemeScript.astro';
+import Footer from '@/components/Footer.astro';
+import GridOverlay from '@/components/GridOverlay';
+import ChatWidget from '@/components/ChatWidget';
+import { site } from '@/content/site';
 
 interface Props {
-  title: string
-  description: string
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalPath?: string;
+  hideChrome?: boolean;
 }
 
-const { description, title } = Astro.props
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const {
+  title = t('meta.title'),
+  description = t('meta.description'),
+  ogImage,
+  canonicalPath,
+  hideChrome = false,
+} = Astro.props;
+
+const siteOrigin = Astro.site?.origin ?? site.siteUrl;
+const currentPath = canonicalPath ?? Astro.url.pathname;
+const canonicalUrl = `${siteOrigin}${currentPath}`;
+const pathWithoutLang = currentPath.replace(/^\/(es|en)/, '') || '/';
+const esUrl = `${siteOrigin}${getLocalizedPath(pathWithoutLang, 'es')}`;
+const enUrl = `${siteOrigin}${getLocalizedPath(pathWithoutLang, 'en')}`;
+
+const dockLabels = {
+  home: t('nav.home'),
+  projects: t('nav.projects'),
+  about: t('nav.about'),
+  cv: t('nav.cv'),
+  contact: t('nav.contact'),
+};
+
+const tabLabels = {
+  home: t('nav.home'),
+  projects: t('nav.projects'),
+  about: t('nav.about'),
+  contact: t('nav.contact'),
+};
+
+const chatLabels = {
+  open: t('chat.open'),
+  title: t('chat.title'),
+  close: t('chat.close'),
+  placeholder: t('chat.placeholder'),
+  send: t('chat.send'),
+  disclaimer: t('chat.disclaimer'),
+  soonTitle: t('chat.soonTitle'),
+  soonBody: t('chat.soonBody'),
+  emailCta: t('chat.emailCta'),
+  errorGeneric: t('chat.errorGeneric'),
+  limitHint: t('chat.limitHint'),
+};
+
+const ogBase =
+  pathWithoutLang === '/'
+    ? 'home'
+    : pathWithoutLang.replace(/\/cine$/, '').replace(/^\//, '').replace(/\//g, '-');
+const resolvedOg = ogImage ?? `/og/${lang}/${ogBase || 'home'}.png`;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={getHrefLang(lang)} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Joaquín Pozzo" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es-AR" href={esUrl} />
+    <link rel="alternate" hreflang="en-US" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteOrigin}${resolvedOg}`} />
+    <meta property="og:locale" content={getHrefLang(lang)} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={`${siteOrigin}${resolvedOg}`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify(getPersonJsonLd(lang))} />
+    <script type="application/ld+json" set:html={JSON.stringify(getWebsiteJsonLd())} />
+    <ThemeScript />
   </head>
+  <body class="min-h-dvh bg-[var(--bg)] text-[var(--fg)]">
+    <a href="#main-content" class="skip-link">{t('a11y.skipToContent')}</a>
+    <GridOverlay client:load />
 
-  <body class="relative text-black dark:text-white">
-    <div
-      class="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black 
-      [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] 
-      dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
-  </div>  
-    <Header />
-    <slot />
-    <Footer />
-    <style is:global>
-      :root {
-        color-scheme: light dark;
-      }
+    {!hideChrome && <TopChrome />}
 
-      html {
-        font-family: "Onest Variable", system-ui, sans-serif;
-        scroll-behavior: smooth;
-      }
+    <main id="main-content" class={`flex-1 ${hideChrome ? '' : 'pb-safe pt-header'}`} tabindex="-1">
+      <slot />
+    </main>
 
-      body {
-        color: rgba(17, 17, 17, 0.9);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        overscroll-behavior: none;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: rgba(255, 255, 255, 0.9);
-        }
-      }
-
-      #header-nav {
-        animation: blur linear both 0.5s;
-        animation-timeline: scroll();
-        animation-range: 0 500px;
-      }
-
-      @keyframes blur {
-        to {
-          backdrop-filter: blur(20px);
-          border-width: 1px;
-          border-color: rgba(0, 0, 0);
-          padding: 0.25rem 0.75rem;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          background-color: rgb(229, 229, 229);
-          border-radius: 9999px;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        @keyframes blur {
-          from {
-            border: 0px;
-          }
-          to {
-            box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 9999px;
-          }
-        }
-      }
-    </style>
+    {!hideChrome && (
+      <>
+        <Footer />
+        <Dock client:load lang={lang} labels={dockLabels} />
+        <BottomTabBar client:load lang={lang} currentPath={currentPath} labels={tabLabels} />
+        <ChatWidget
+          client:load
+          lang={lang}
+          labels={chatLabels}
+          contactHref={`/${lang}/contacto`}
+          email={site.email}
+        />
+      </>
+    )}
   </body>
 </html>

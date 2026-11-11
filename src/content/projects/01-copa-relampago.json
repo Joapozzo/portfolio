@@ -1,0 +1,90 @@
+{
+  "order": 1,
+  "slug": "copa-relampago",
+  "title": {
+    "es": "Copa Relámpago / UCFA",
+    "en": "Copa Relámpago / UCFA"
+  },
+  "summary": {
+    "es": "Plataforma integral de gestión de torneos de fútbol amateur con fixtures, pagos, verificación de identidad y notificaciones en tiempo real.",
+    "en": "Amateur football tournament platform with fixtures, payments, identity verification, and real-time notifications."
+  },
+  "role": {
+    "es": "Backend Developer (100% del backend)",
+    "en": "Backend Developer (100% of backend)"
+  },
+  "stack": [
+    "Node.js",
+    "Express",
+    "TypeScript",
+    "Prisma",
+    "PostgreSQL",
+    "Socket.IO",
+    "Redis",
+    "Sentry",
+    "Mercado Pago",
+    "Firebase Auth"
+  ],
+  "metrics": [
+    {
+      "label": { "es": "Modelos Prisma", "en": "Prisma Models" },
+      "value": "91",
+      "verified": true
+    },
+    {
+      "label": { "es": "Archivos de test (backend)", "en": "Test files (backend)" },
+      "value": "69",
+      "verified": true
+    },
+    {
+      "label": { "es": "Archivos de test (frontend)", "en": "Test files (frontend)" },
+      "value": "38",
+      "verified": true
+    },
+    {
+      "label": { "es": "Usuarios activos", "en": "Active users" },
+      "value": "TODO",
+      "verified": false
+    }
+  ],
+  "links": [
+    { "type": "live", "url": "https://coparelampago.com" },
+    {
+      "type": "live",
+      "url": "https://ucfa.com.ar",
+      "label": { "es": "UCFA", "en": "UCFA" }
+    }
+  ],
+  "embedPolicy": "live",
+  "embedUrl": "https://coparelampago.com",
+  "status": "active",
+  "featured": true,
+  "clientPermission": false,
+  "tint": "#30D158",
+  "screenshotIds": {
+    "mac": [
+      "coparelampago-mac-fold",
+      "coparelampago-mac-scroll",
+      "ucfa-mac-fold",
+      "ucfa-mac-scroll"
+    ],
+    "ipad": [
+      "coparelampago-ipad-fold",
+      "coparelampago-ipad-scroll",
+      "ucfa-ipad-fold"
+    ],
+    "iphone": [
+      "coparelampago-iphone-fold",
+      "coparelampago-iphone-scroll",
+      "ucfa-iphone-fold"
+    ]
+  },
+  "serverFlow": [
+    { "es": "POST /partidos/:id/eventos", "en": "POST /matches/:id/events" },
+    { "es": "Auth · Firebase + roles", "en": "Auth · Firebase + roles" },
+    { "es": "Zod valida el payload", "en": "Zod validates payload" },
+    { "es": "Prisma transaction", "en": "Prisma transaction" },
+    { "es": "Redis invalida caché", "en": "Redis cache invalidation" },
+    { "es": "Socket.IO emite tabla_update", "en": "Socket.IO emits standings_update" }
+  ]
+}

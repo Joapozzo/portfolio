@@ -1,5 +1,6 @@
 # build output
 dist/
+.vercel/
 
 # generated types
 .astro/
@@ -13,13 +14,33 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables
+# environment variables / secrets
 .env
-.env.production
+.env.*
+!.env.example
+*.pem
+*.p12
+serviceAccountKey.json
+**/serviceAccountKey.json
 
 # macOS-specific files
 .DS_Store
-bun.*
 
-package-lock.json
-pnpm-lock.yaml
+# jetbrains setting folder
+.idea/
+
+# generated from src/assets/projects via pnpm shots:sync / prebuild
+public/projects/
+
+# test / CI artifacts
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+
+# local working notes / uploads (not part of the app)
+uploads/
+
+# editor
+.vscode/*
+!.vscode/extensions.json

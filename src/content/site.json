@@ -1,0 +1,52 @@
+{
+  "name": "Joaquín Pozzo",
+  "role": "Backend & Full Stack Developer",
+  "email": "pozzojoa@gmail.com",
+  "github": {
+    "url": "https://github.com/Joapozzo",
+    "handle": "Joapozzo",
+    "label": "github.com/Joapozzo"
+  },
+  "linkedin": {
+    "url": "https://www.linkedin.com/in/joaquin-pozzo-49b31a262/",
+    "label": "linkedin.com/in/joaquin-pozzo-49b31a262"
+  },
+  "location": {
+    "es": "Córdoba, Argentina",
+    "en": "Córdoba, Argentina"
+  },
+  "availability": {
+    "es": "Abierto a oportunidades Frontend, Backend y Full Stack",
+    "en": "Open to Frontend, Backend & Full Stack roles"
+  },
+  "employer": {
+    "name": "Gentío MKT",
+    "role": {
+      "es": "Diseñador y desarrollador web",
+      "en": "Web designer & developer"
+    },
+    "since": {
+      "es": "Desde marzo 2023",
+      "en": "Since March 2023"
+    }
+  },
+  "education": {
+    "degree": {
+      "es": "Analista en Sistemas",
+      "en": "Systems Analyst"
+    },
+    "school": "IES · 2026"
+  },
+  "stackDaily": [
+    "Node.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Prisma",
+    "React",
+    "Next.js",
+    "Socket.IO",
+    "Redis"
+  ],
+  "siteUrl": "https://joaquinpozzo.dev",
+  "siteUrlNote": "UNVERIFIED — no owned domain yet; Astro/SEO canonical placeholder until a real domain is configured"
+}

@@ -1,0 +1,37 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout title={`${t('cv.title')} | Joaquín Pozzo`}>
+  <section class="page-shell py-6" data-align="shell">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <h1 class="large-title" data-align="title">{t('cv.title')}</h1>
+      <a
+        href="/cv-en.pdf"
+        class="focus-ring rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white"
+        download
+        data-testid="cv-download"
+      >
+        {t('cv.download')}
+      </a>
+    </div>
+    <div class="surface card-pad" data-align="card">
+      <h2 class="title-2">Joaquín Pozzo</h2>
+      <p class="mt-2 text-[var(--fg-secondary)]">Backend & Full Stack Developer</p>
+      <p class="mt-4 text-sm text-[var(--fg-secondary)]">Web developer at Gentío MKT since 2023</p>
+      <h3 class="mt-8 mb-3 font-semibold">Stack</h3>
+      <div class="flex flex-wrap gap-2">
+        {['Node.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Express', 'React', 'Next.js', 'Socket.IO', 'Redis'].map((tech) => (
+          <span class="rounded-full bg-[var(--fill)] px-3 py-1 text-sm">{tech}</span>
+        ))}
+      </div>
+      <p class="mt-6 text-sm text-[var(--fg-secondary)]">
+        The PDF is generated at build time from the same verified site facts (EN).
+      </p>
+    </div>
+  </section>
+</Layout>
