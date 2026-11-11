@@ -24,6 +24,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # @astrojs/vercel writes static HTML to .vercel/output/static (not ./dist).
+      # lighthouserc.json serves that directory over HTTP for collect.
       - run: pnpm build
 
       - name: Run Lighthouse CI
