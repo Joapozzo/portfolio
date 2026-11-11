@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap host is the Astro `site` URL (see src/content/site.json — unverified domain placeholder).
+Sitemap: https://joaquinpozzo.dev/sitemap-index.xml

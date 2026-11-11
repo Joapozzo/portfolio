@@ -1,0 +1,33 @@
+{
+  "order": 5,
+  "slug": "maxshop",
+  "title": { "es": "MaxShop", "en": "MaxShop" },
+  "summary": {
+    "es": "E-commerce de colchones y productos para el hogar, con integraciones de envío y pago.",
+    "en": "Mattress and home products e-commerce with shipping and payment integrations."
+  },
+  "role": {
+    "es": "Frontend e integraciones (Andreani, Mercado Pago)",
+    "en": "Frontend and integrations (Andreani, Mercado Pago)"
+  },
+  "stack": ["Andreani", "Mercado Pago"],
+  "metrics": [],
+  "links": [{ "type": "live", "url": "https://maxshop.com.ar" }],
+  "embedPolicy": "live",
+  "embedUrl": "https://maxshop.com.ar",
+  "status": "active",
+  "featured": true,
+  "clientPermission": false,
+  "tint": "#0A84FF",
+  "screenshotIds": {
+    "mac": ["maxshop-mac-fold", "maxshop-mac-scroll"],
+    "ipad": ["maxshop-ipad-fold"],
+    "iphone": ["maxshop-iphone-fold"]
+  },
+  "serverFlow": [
+    { "es": "Checkout request", "en": "Checkout request" },
+    { "es": "Cart / session", "en": "Cart / session" },
+    { "es": "Mercado Pago", "en": "Mercado Pago" },
+    { "es": "Andreani shipping", "en": "Andreani shipping" }
+  ]
+}

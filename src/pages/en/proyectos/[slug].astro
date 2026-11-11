@@ -1,0 +1,75 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { useTranslations } from '@/i18n';
+import { getCollection } from 'astro:content';
+import CaseStudyView from '@/components/CaseStudyView';
+import { resolveShots } from '@/lib/screenshots';
+import { getCaseStudy } from '@/content/case-studies';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project: project.data },
+  }));
+}
+
+const { project } = Astro.props;
+const shots = resolveShots(project.slug, project.screenshotIds);
+const caseStudy = getCaseStudy(project.slug) ?? {
+  slug: project.slug,
+  hasArchitecture: false,
+  role: project.role,
+  stack: project.stack,
+};
+
+const liveUrl = project.links?.find((l) => l.type === 'live')?.url ?? project.embedUrl;
+
+const serverFlow =
+  project.serverFlow ??
+  ([
+    { es: 'Request', en: 'Request' },
+    { es: 'Validate', en: 'Validate' },
+    { es: 'Persist', en: 'Persist' },
+    { es: 'Respond', en: 'Respond' },
+  ] as const);
+
+const labels = {
+  back: t('projects.back'),
+  problem: t('projects.problem'),
+  role: t('projects.myRole'),
+  stack: t('projects.stack'),
+  architecture: t('projects.architecture'),
+  decisions: t('projects.decisions'),
+  results: t('projects.results'),
+  server: t('cinema.console'),
+  illustrative: t('cinema.illustrative'),
+  play: t('projects.play'),
+  pause: t('projects.pause'),
+  replay: t('projects.replay'),
+  tapHint: t('projects.tapNode'),
+  openLive: t('projects.openLive'),
+  cinema: t('projects.cinema'),
+};
+---
+
+<Layout title={`${project.title[lang]} | Joaquín Pozzo`} description={project.summary[lang]}>
+  <CaseStudyView
+    client:load
+    lang={lang}
+    slug={project.slug}
+    title={project.title[lang]}
+    summary={project.summary[lang]}
+    tint={project.tint}
+    homeHref={`/${lang}#projects`}
+    screenshots={shots}
+    serverFlow={[...serverFlow]}
+    caseStudy={caseStudy}
+    labels={labels}
+    liveUrl={liveUrl}
+    cinemaHref={`/${lang}/proyectos/${project.slug}/cine`}
+  />
+</Layout>
